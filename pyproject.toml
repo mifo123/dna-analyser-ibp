@@ -2,7 +2,7 @@
 name = "DNA_analyser_IBP"
 version = "3.7.0"
 description = "DNA analyser API wrapper tool for Jupiter notebooks."
-authors = ["Patrik Kaura <patrikkaura@gmail.com>"]
+authors = ["Patrik Kaura <patrikkaura@gmail.com>", "Kryštof Kotrys <krystofkotrys@gmail.com>"]
 readme = "README.md"
 license = "GPL-3.0-or-later"
 homepage = "http://bioinformatics.ibp.cz/"

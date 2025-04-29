@@ -40,19 +40,6 @@ class ZDna(AnalyseInterface):
         Args:
             tags (Optional[List[str]]): tags for analyse filtering [default=None]
             sequence (Union[pd.DataFrame, pd.Series]): one or many sequences to analyse
-        
-        
-        _model_defaults: Dict = {
-            "model1": {"GC_score": 25, "GTAC_score": 3, "AT_score": 0, "min_score_percentage": 12},
-            "model2": {"GC_score": 2, "GTAC_score": 1, "AT_score": 0.5, "min_score_percentage": 50},
-        }
-
-        # setting default argument values based on model settings
-        selected_model = model[0] if isinstance(model, list) and model else "model1"
-        defaults = _model_defaults.get(selected_model, _model_defaults["model1"])
-        
-        for arg in [GC_score, GTAC_score, AT_score, min_score_percentage]:
-            arg = arg if arg is not None else defaults["{arg}"]
         """
 
         def _analyse_creator(id: str, name: str, tags: List[Optional[str]]) -> None:
