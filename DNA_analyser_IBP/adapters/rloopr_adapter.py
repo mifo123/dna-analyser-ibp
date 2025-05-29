@@ -196,7 +196,7 @@ class RLooprAdapter(BaseAdapter, BaseAnalyseAdapter):
             params=params,
         )
         data: dict = validate_key_response(
-            response=response, status_code=200, payload_key="payload"
+            response=response, status_code=200, payload_key="items"
         )
 
         return generate_dataframe(response=data)
