@@ -22,7 +22,7 @@ class TestSequenceAdapter:
         sequence_generator = adapters.sequence.load_all(tags=list())
 
         sequence_list = [sequence for sequence in sequence_generator]
-        assert len(sequence_list) == 7
+        assert len(sequence_list) == 8
 
         for sequence in sequence_list:
             assert isinstance(sequence, Sequence)
