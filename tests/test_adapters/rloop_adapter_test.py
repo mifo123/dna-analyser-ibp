@@ -9,13 +9,11 @@ from DNA_analyser_IBP.adapters import Adapters, UserAdapter
 
 @pytest.fixture(scope="module")
 def adapters():
-    # TODO: change to PRODUCTION server when deployed
     user: User = UserAdapter.sign_in(
-        User(email="host", password="host", server=Config.SERVER_CONFIG.LOCALHOST)
+        User(email="host", password="host", server=Config.SERVER_CONFIG.PRODUCTION)
     )
     adapters = Adapters(user=user)
     return adapters
-
 
 @pytest.fixture(scope="module")
 def sequence(adapters):
@@ -25,7 +23,7 @@ def sequence(adapters):
 
 
 class TestRlooprAdapter:
-    @pytest.mark.skip(reason="Not implemented in production environment!")
+    #@pytest.mark.skip(reason="Not implemented in production environment!")
     def test_rloopr_analysis(self, adapters: Adapters, sequence: Sequence) -> None:
         """It should run rloopr analysis and return RLoopr object"""
         rloopr: RLoopr = adapters.rloopr.create_analyse(
@@ -35,7 +33,7 @@ class TestRlooprAdapter:
         )
         assert isinstance(rloopr, RLoopr)
 
-    @pytest.mark.skip(reason="Not implemented in production environment!")
+    #@pytest.mark.skip(reason="Not implemented in production environment!")
     def test_load_all_rloopr(self, adapters: Adapters) -> None:
         """It should return iterator with RLoopr models"""
         rloopr_generator = adapters.rloopr.load_all(tags=list())
@@ -46,7 +44,7 @@ class TestRlooprAdapter:
         for rloopr in rloopr_list:
             assert isinstance(rloopr, RLoopr)
 
-    @pytest.mark.skip(reason="Not implemented in production environment!")
+    #@pytest.mark.skip(reason="Not implemented in production environment!")
     def test_load_by_id_rloopr(self, adapters: Adapters) -> None:
         """It should return iterator with RLoopr models"""
         rloopr_generator = adapters.rloopr.load_all(tags=list())
@@ -55,7 +53,7 @@ class TestRlooprAdapter:
         rloopr = adapters.rloopr.load_by_id(id=rloopr_list[0].id)
         assert isinstance(rloopr, RLoopr)
 
-    @pytest.mark.skip(reason="Not implemented in production environment!")
+    #@pytest.mark.skip(reason="Not implemented in production environment!")
     def test_rloopr_delete(self, adapters: Adapters) -> None:
         """It should delete rloopr analysis"""
         rloopr_generator = adapters.rloopr.load_all(tags=list())
