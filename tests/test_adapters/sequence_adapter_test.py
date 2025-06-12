@@ -1,6 +1,7 @@
 import pytest
 
 from typing import List
+from pathlib import Path
 
 from DNA_analyser_IBP.config import Config
 from DNA_analyser_IBP.models import User, Sequence
@@ -81,13 +82,12 @@ class TestSequenceAdapter:
         )
         assert isinstance(sequence, Sequence)
 
-    @pytest.mark.skip(reason="in pipeline cannot provide file path")
     def test_fasta_sequence_creation(self, adapters: Adapters) -> None:
         """It should create sequence from file and return object"""
 
         sequence: Sequence = adapters.sequence.create_file_sequence(
             circular=True,
-            path="./sequence_samples/fasta_sample.txt",
+            path= Path(__file__).parent / "sequence_samples/fasta_sample.txt",
             name="test_file_sequence",
             tags=["test"],
             nucleic_type="DNA",
