@@ -172,6 +172,7 @@ pytest -v tests/
 ## Authors
 
 * **Patrik Kaura** - *Main developer* - [patrikkaura](https://github.com/patrikkaura)
+* **Kryštof Kotrys** - *Developer* - [krystofkotrys](https://github.com/krystofkotrys)
 
 ## License
 
