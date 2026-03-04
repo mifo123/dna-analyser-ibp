@@ -172,6 +172,30 @@ class RLooprAdapter(BaseAdapter, BaseAnalyseAdapter):
 
         return validate_text_response(response=response, status_code=200)
 
+
+    @tenacity.retry(wait=Config.TENACITY_CONFIG.WAIT, stop=Config.TENACITY_CONFIG.STOP)
+    @login_required
+    def export_bedgraph(self, id: str) -> str:
+        """
+        Send GET to /analyse/rloopr/{id}/rloopr.bedgraph
+
+        Args:
+            id (str): rloopr analyse id
+
+        Returns:
+            str: bedgraph file in string
+        """
+        header: dict = {"Accept": "text/plain", "Authorization": self.user.jwt}
+
+        response: Response = requests.get(
+            join_url(
+                self.user.server, Config.ENDPOINT_CONFIG.RLOOPR, id, "rloopr.bedgraph"
+            ),
+            headers=header,
+        )
+
+        return validate_text_response(response=response, status_code=200)
+
     @login_required
     def load_result(self, id: str) -> pd.DataFrame:
         """

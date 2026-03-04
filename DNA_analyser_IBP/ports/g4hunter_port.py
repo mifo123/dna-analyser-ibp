@@ -47,5 +47,9 @@ class G4HunterPort(Port):
     def export_csv(self, *, id: str, aggregate: bool = True) -> str:
         return self.adapter.g4hunter.export_csv(id=id, aggregate=aggregate)
 
+
+    def export_bedgraph(self, *, id: str, aggregate: bool = True) -> str:
+        return self.adapter.g4hunter.export_bedgraph(id=id, aggregate=aggregate)
+
     def load_heatmap(self, *, id: str, segments: int) -> "DataFrame":
         return self.adapter.g4hunter.load_heatmap(id=id, segments=segments)
