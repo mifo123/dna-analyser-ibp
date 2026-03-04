@@ -285,6 +285,8 @@ class ZDna(AnalyseInterface):
         *,
         analyse: Union[pd.DataFrame, pd.Series],
         path: str,
+        base_start: int = 0,
+        base_end: int = 0,
     ) -> None:
         """
         Export z-dna analyses result into csv files
@@ -299,7 +301,9 @@ class ZDna(AnalyseInterface):
             file_path: str = os.path.join(path, f"{name}_{id}_result.csv")
 
             with open(file_path, "w") as new_file:
-                data: str = self.__ports.zdna.export_csv(id=id)
+                data: str = self.__ports.zdna.export_csv(
+                    id=id, base_start=base_start, base_end=base_end
+                )
                 new_file.write(data)
             Logger.info(f"file created -> {file_path}")
 
@@ -316,6 +320,8 @@ class ZDna(AnalyseInterface):
         *,
         analyse: Union[pd.DataFrame, pd.Series],
         path: str,
+        base_start: int = 0,
+        base_end: int = 0,
     ) -> None:
         """
         Export z-dna analyses result into bedgraph files
@@ -330,7 +336,9 @@ class ZDna(AnalyseInterface):
             file_path: str = os.path.join(path, f"{name}_{id}_result.bed")
 
             with open(file_path, "w") as new_file:
-                data: str = self.__ports.zdna.export_bedgraph(id=id)
+                data: str = self.__ports.zdna.export_bedgraph(
+                    id=id, base_start=base_start, base_end=base_end
+                )
                 new_file.write(data)
             Logger.info(f"file created -> {file_path}")
 
