@@ -50,5 +50,9 @@ class CpGPort(Port):
     def export_csv(self, *, id: str) -> str:
         return self.adapter.cpg.export_csv(id=id)
     
+
+    def export_bedgraph(self, *, id: str) -> str:
+        return self.adapter.cpg.export_bedgraph(id=id)
+
     def load_result(self, *, id: str) -> "DataFrame":
         return self.adapter.cpg.load_result(id=id)

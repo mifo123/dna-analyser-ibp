@@ -39,5 +39,9 @@ class RlooprPort(Port):
     def export_csv(self, *, id: str) -> str:
         return self.adapter.rloopr.export_csv(id=id)
 
+
+    def export_bedgraph(self, *, id: str) -> str:
+        return self.adapter.rloopr.export_bedgraph(id=id)
+
     def load_result(self, *, id: str) -> "DataFrame":
         return self.adapter.rloopr.load_result(id=id)

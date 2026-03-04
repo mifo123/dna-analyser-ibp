@@ -196,6 +196,28 @@ class CpGAdapter(BaseAdapter, BaseAnalyseAdapter):
 
         return validate_text_response(response=response, status_code=200)
     
+
+    @tenacity.retry(wait=Config.TENACITY_CONFIG.WAIT, stop=Config.TENACITY_CONFIG.STOP)
+    @login_required
+    def export_bedgraph(self, id: str) -> str:
+        """
+        Send GET to /analyse/cpg/{id}/cpg.bedgraph
+
+        Args:
+            id (str): cpg analyse id
+
+        Returns:
+            str: bedgraph file in string
+        """
+        header: dict = {"Accept": "text/plain", "Authorization": self.user.jwt}
+
+        response: Response = requests.get(
+            join_url(self.user.server, Config.ENDPOINT_CONFIG.CPG, id, "cpg.bedgraph"),
+            headers=header,
+        )
+
+        return validate_text_response(response=response, status_code=200)
+
     @login_required
     def load_result(self, id: str) -> pd.DataFrame:
         """
